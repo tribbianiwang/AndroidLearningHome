@@ -3,6 +3,7 @@ package com.wl.androidlearning.designpattern.singleton;
 import android.util.Log;
 
 /*
+6.枚举式
 JDK版本:JDK1.5起
 是否Lazy初始化：否
 是否多线程安全:是
