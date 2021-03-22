@@ -3,7 +3,7 @@ package com.wl.androidlearning.designpattern.singleton;
 import android.util.Log;
 
 public class Singleton {
-    //懒汉式,线程不安全
+    //1懒汉式,线程不安全
     //是否Lazy初始化:是
     //是否多线程安全:否
     //实现难度:易
@@ -23,7 +23,7 @@ public class Singleton {
 //        Log.d("singleton", "懒汉式,非线程安全");
 //    }
 
-    //懒汉式，线程安全
+    //2懒汉式，线程安全
     //是否lazy初始化，是
     //是否线程安全:是
     //实现难度:易
@@ -32,19 +32,43 @@ public class Singleton {
 //    缺点:必须加锁synchronized才能保证单例，但加锁会影响效率.
 //    getInstance()的性能对应用程序不是很关键(该方法使用不太频繁)。
 
-    private static Singleton instance;
+//    private static Singleton instance;
+//
+//    private Singleton(){}
+//
+//    public static synchronized Singleton getInstance(){
+//        if(instance==null){
+//            instance = new Singleton();
+//        }
+//        return instance;
+//    }
+//
+//        public void showMessage() {
+//        Log.d("singleton", "懒汉式,线程安全");
+//    }
 
-    private Singleton(){}
+    //3.饿汉式
+    //是否Lazy初始化:否
+    //是否多线程安全:是
+    //实现难度:易
+    //描述:这种方式比较常用，但容易产生垃圾对象
+    //优点:没有加锁，执行效率会提高
+    //缺点:类加载时就初始化，浪费内存。
+    //它基于classloader机制避免了多线程的同步问题，不过，instance在类加载时就实例化，虽然导致类装载
+//    的原因有很多种，在单例模式中大多数都是调用getInstance方法，但是也不能确定有其他方式(或者其他的静态方法)
+//        导致类装载，这时候初始化instance显然没有达到lazyloading的效果
 
-    public static synchronized Singleton getInstance(){
-        if(instance==null){
-            instance = new Singleton();
-        }
+    private static Singleton instance = new Singleton();
+
+    private Singleton() {
+
+    }
+
+    public static Singleton getInstance() {
         return instance;
     }
 
-        public void showMessage() {
-        Log.d("singleton", "懒汉式,线程安全");
+    public void showMessage() {
+        Log.d("singleton", "饿汉式");
     }
-
 }
