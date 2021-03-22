@@ -7,6 +7,7 @@ import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
 import com.wl.androidlearning.designpattern.singleton.SingleObject
 import com.wl.androidlearning.designpattern.singleton.Singleton
+import com.wl.androidlearning.designpattern.singleton.SingletonEnum
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,6 +49,9 @@ class MainActivity : AppCompatActivity() {
 
         var singleton = Singleton.getInstance()
         singleton.showMessage()
+
+        var singletonEnum = SingletonEnum.INSTANCE
+        singletonEnum.showMessage()
 
 
         Log.d("test","newfdsfasdftest")

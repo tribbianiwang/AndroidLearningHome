@@ -134,4 +134,7 @@ public class Singleton {
         Log.d("singleton", "登记式，静态内部类");
     }
 
+
+
+
 }
