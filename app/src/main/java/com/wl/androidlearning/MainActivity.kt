@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
+import com.wl.androidlearning.designpattern.singleton.SingleObject
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,9 @@ class MainActivity : AppCompatActivity() {
         green?.fill()
         blue?.fill()
 
+
+        var singleObject = SingleObject.getInstance()
+        singleObject.showMessage()
 
 
         Log.d("test","newfdsfasdftest")
