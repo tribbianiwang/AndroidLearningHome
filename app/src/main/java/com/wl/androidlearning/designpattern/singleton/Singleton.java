@@ -57,18 +57,46 @@ public class Singleton {
     //它基于classloader机制避免了多线程的同步问题，不过，instance在类加载时就实例化，虽然导致类装载
 //    的原因有很多种，在单例模式中大多数都是调用getInstance方法，但是也不能确定有其他方式(或者其他的静态方法)
 //        导致类装载，这时候初始化instance显然没有达到lazyloading的效果
+//
+//    private static Singleton instance = new Singleton();
+//
+//    private Singleton() {
+//
+//    }
+//
+//    public static Singleton getInstance() {
+//        return instance;
+//    }
+//
+//    public void showMessage() {
+//        Log.d("singleton", "饿汉式");
+//    }
 
-    private static Singleton instance = new Singleton();
+    //4双检锁/双重校验锁（DCL，即 double-checked locking）
+    //jdk版本:1.5及以上
+    //是否lazy初始化:是
+    //是否多线程安全:是
+    //实现难度:较复杂
+    //描述:这种方式采用双锁机制，安全且在多线程情况下保持高性能
+//    getInstance()的性能对应用程序很关键
+    private static volatile Singleton instance;
 
-    private Singleton() {
-
+    private Singleton(){
     }
 
-    public static Singleton getInstance() {
+    public static Singleton getInstance(){
+        if(instance==null){
+            synchronized (Singleton.class){
+                if(instance==null){
+                    instance = new  Singleton();
+                }
+            }
+        }
+
         return instance;
     }
 
-    public void showMessage() {
-        Log.d("singleton", "饿汉式");
+        public void showMessage() {
+        Log.d("singleton", "双检锁/双重校验锁");
     }
 }
