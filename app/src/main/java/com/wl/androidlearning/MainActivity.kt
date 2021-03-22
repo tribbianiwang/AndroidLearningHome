@@ -6,6 +6,7 @@ import android.util.Log
 import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
 import com.wl.androidlearning.designpattern.singleton.SingleObject
+import com.wl.androidlearning.designpattern.singleton.Singleton
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,9 @@ class MainActivity : AppCompatActivity() {
 
         var singleObject = SingleObject.getInstance()
         singleObject.showMessage()
+
+        var singleton = Singleton.getInstance()
+        singleton.showMessage()
 
 
         Log.d("test","newfdsfasdftest")
