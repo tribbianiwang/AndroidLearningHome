@@ -3,6 +3,7 @@ package com.wl.androidlearning
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.wl.androidlearning.designpattern.builder.*
 import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
 import com.wl.androidlearning.designpattern.singleton.SingleObject
@@ -55,5 +56,19 @@ class MainActivity : AppCompatActivity() {
 
 
         Log.d("test","newfdsfasdftest")
+
+        var meal = Meal()
+        meal.addItem(Coke())
+        meal.addItem(VegBurger())
+        meal.cost
+        meal.showItems()
+
+        var mealB = Meal()
+        mealB.addItem(Pepsi())
+        mealB.addItem(ChickenBurger())
+        mealB.cost
+        mealB.showItems()
+
+
     }
 }
