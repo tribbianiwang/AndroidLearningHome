@@ -3,9 +3,14 @@ package com.wl.androidlearning
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.wl.androidlearning.designpattern.adapter.AudioPlayer
 import com.wl.androidlearning.designpattern.builder.*
 import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
+import com.wl.androidlearning.designpattern.prototype.Circle
+import com.wl.androidlearning.designpattern.prototype.Rectangle
+import com.wl.androidlearning.designpattern.prototype.ShapeCache
+import com.wl.androidlearning.designpattern.prototype.Square
 import com.wl.androidlearning.designpattern.singleton.SingleObject
 import com.wl.androidlearning.designpattern.singleton.Singleton
 import com.wl.androidlearning.designpattern.singleton.SingletonEnum
@@ -57,18 +62,30 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("test","newfdsfasdftest")
 
-        var meal = Meal()
-        meal.addItem(Coke())
-        meal.addItem(VegBurger())
+        var mealBuilder =MealBuilder()
+        var meal = mealBuilder.createNoVegMeal()
         meal.cost
         meal.showItems()
 
-        var mealB = Meal()
-        mealB.addItem(Pepsi())
-        mealB.addItem(ChickenBurger())
+        var mealB =  mealBuilder.createVegMeal()
         mealB.cost
         mealB.showItems()
 
+        //原型模式
+       ShapeCache.loadCatch()
 
+
+        var circleProto =  ShapeCache.getShape("1") as Circle
+        var rectangleProto =  ShapeCache.getShape("2") as Rectangle
+        var squareProto =  ShapeCache.getShape("3") as Square
+        Log.d("proto","circle:${circleProto.type}--rect:${rectangleProto.type}--suqare:${squareProto.type}")
+
+
+        //适配器模式
+        var audioPlayer = AudioPlayer()
+        audioPlayer.play("mp3","月亮之上")
+        audioPlayer.play("mp4","天下足球")
+        audioPlayer.play("vlc","锵锵行天下")
+        audioPlayer.play("mkv","我们这一天")
     }
 }
