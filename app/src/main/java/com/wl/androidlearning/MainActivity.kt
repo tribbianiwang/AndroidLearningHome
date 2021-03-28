@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import com.wl.androidlearning.designpattern.adapter.AudioPlayer
+import com.wl.androidlearning.designpattern.bridge.GreenCircle
+import com.wl.androidlearning.designpattern.bridge.RedCircle
 import com.wl.androidlearning.designpattern.builder.*
 import com.wl.androidlearning.designpattern.factory.FactoryProducer
 import com.wl.androidlearning.designpattern.factory.ShapeFactory
@@ -87,5 +89,12 @@ class MainActivity : AppCompatActivity() {
         audioPlayer.play("mp4","天下足球")
         audioPlayer.play("vlc","锵锵行天下")
         audioPlayer.play("mkv","我们这一天")
+        
+        //桥接模式
+        var redCircle = com.wl.androidlearning.designpattern.bridge.Circle(RedCircle(),5,40,40)
+        redCircle.draw()
+
+        var greenCircle = com.wl.androidlearning.designpattern.bridge.Circle(GreenCircle(),5,40,40);
+        greenCircle.draw()
     }
 }
